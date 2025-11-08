@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>You're Bald</title>
   <style>
-    :root {0
+    :root {
       --bg: #050816;
       --accent: #ffdd00;
       --accent-soft: rgba(255, 221, 0, 0.15);
@@ -103,6 +103,7 @@
       box-shadow:
         inset 0 0 18px rgba(0, 0, 0, 0.7),
         0 14px 40px rgba(0, 0, 0, 0.9);
+      overflow: hidden;
     }
 
     .image-wrap img {
@@ -111,11 +112,20 @@
       border-radius: 18px;
       object-fit: cover;
       filter: saturate(1.02);
+      position: relative;
+      z-index: 1; /* base layer */
     }
 
-    /* Loud "BALD!" text */
-    .bald-shout {
+    /* Overlays: always above the image */
+    .bald-shout,
+    .bald-echo,
+    .arrow {
       position: absolute;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .bald-shout {
       top: 4px;
       left: 8px;
       font-weight: 900;
@@ -127,12 +137,9 @@
         0 0 18px rgba(255, 221, 0, 0.56);
       -webkit-text-stroke: 0.5px #111827;
       letter-spacing: 0.02em;
-      pointer-events: none;
     }
 
-    /* Another BALD for extra drama */
     .bald-echo {
-      position: absolute;
       bottom: -10px;
       right: 6px;
       font-weight: 900;
@@ -144,17 +151,13 @@
         0 0 14px rgba(255, 221, 0, 0.3);
       -webkit-text-stroke: 0.5px #111827;
       letter-spacing: 0.08em;
-      pointer-events: none;
     }
 
-    /* Arrows aggressively pointing at the bald area */
     .arrow {
-      position: absolute;
       font-size: 26px;
       font-weight: 900;
       color: var(--accent);
       text-shadow: 0 0 10px rgba(0, 0, 0, 1);
-      pointer-events: none;
     }
 
     .arrow-1 {
@@ -189,7 +192,6 @@
       font-weight: 700;
     }
 
-    /* Tiny disclaimer for friendliness */
     .disclaimer {
       text-align: center;
       font-size: 9px;
@@ -227,10 +229,10 @@
     </div>
 
     <div class="image-wrap">
+      <!-- Overlays (now forced above image) -->
       <div class="bald-shout">BALD!</div>
       <div class="bald-echo">ABSOLUTELY BALD!</div>
 
-      <!-- Arrows screaming at the baldness -->
       <div class="arrow arrow-1">⬆ BALD!</div>
       <div class="arrow arrow-2">BALD! ⬇</div>
       <div class="arrow arrow-3">⬇ BALD!</div>
