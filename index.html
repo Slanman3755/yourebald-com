@@ -7,7 +7,6 @@
     :root {
       --bg: #050816;
       --accent: #ffdd00;
-      --accent-soft: rgba(255, 221, 0, 0.15);
       --text: #f9fafb;
       --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", -system-ui, sans-serif;
     }
@@ -46,8 +45,8 @@
     .headline {
       text-align: center;
       font-weight: 900;
-      font-size: 28px;
-      letter-spacing: 0.2em;
+      font-size: 30px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 6px;
       color: var(--accent);
@@ -58,8 +57,8 @@
 
     .subhead {
       text-align: center;
-      font-size: 13px;
-      letter-spacing: 0.11em;
+      font-size: 12px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #9ca3af;
       margin-bottom: 14px;
@@ -67,8 +66,9 @@
 
     .bald-label {
       position: relative;
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       padding: 6px 14px;
       margin: 0 auto 14px;
@@ -82,10 +82,10 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 700;
-      justify-content: center;
+      text-align: center;
     }
 
-    .bald-label span.icon {
+    .bald-label .icon {
       font-size: 14px;
       transform: translateY(-1px);
     }
@@ -95,7 +95,7 @@
       margin: 4px auto 12px;
       max-width: 360px;
       border-radius: 22px;
-      padding: 10px 10px 22px;
+      padding: 14px 12px 26px;
       background:
         radial-gradient(circle at top, rgba(255, 221, 0, 0.16), transparent),
         radial-gradient(circle at bottom, rgba(17, 24, 39, 0.9), #020817);
@@ -116,55 +116,47 @@
       z-index: 1;
     }
 
-    /* Overlays */
     .bald-shout,
     .arrow {
       position: absolute;
       z-index: 2;
       pointer-events: none;
+      font-weight: 900;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      -webkit-text-stroke: 0.5px #111827;
     }
 
     .bald-shout {
-      top: 6px;
+      top: 4px;
       left: 10px;
-      font-weight: 900;
       font-size: 24px;
       transform: rotate(-9deg);
       color: var(--accent);
-      text-shadow:
-        0 0 12px rgba(0, 0, 0, 1),
-        0 0 18px rgba(255, 221, 0, 0.56);
-      -webkit-text-stroke: 0.5px #111827;
       letter-spacing: 0.02em;
     }
 
     .arrow {
-      font-size: 28px;
-      font-weight: 900;
+      font-size: 26px;
       color: var(--accent);
-      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
     }
 
+    /* All arrows converge toward the same top-center area */
     .arrow-1 {
-      top: 22%;
-      left: 8%;
-      transform: rotate(15deg);
-      content: "⬆";
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .arrow-2 {
-      top: 18%;
-      right: 14%;
-      transform: rotate(-25deg);
-      content: "⬇";
+      top: 14%;
+      left: 14%;
+      transform: rotate(25deg);
     }
 
     .arrow-3 {
-      top: 32%;
-      left: 44%;
-      transform: rotate(90deg);
-      font-size: 34px;
-      content: "⬇";
+      top: 14%;
+      right: 14%;
+      transform: rotate(-25deg);
     }
 
     .caption {
@@ -175,7 +167,7 @@
       line-height: 1.5;
     }
 
-    .caption span.highlight {
+    .caption .highlight {
       color: var(--accent);
       font-weight: 700;
     }
@@ -190,8 +182,8 @@
 
     @media (max-width: 520px) {
       .headline {
-        font-size: 22px;
-        letter-spacing: 0.16em;
+        font-size: 24px;
+        letter-spacing: 0.12em;
       }
       .bald-shout {
         font-size: 20px;
@@ -204,7 +196,7 @@
 </head>
 <body>
   <div class="poster">
-    <div class="headline">VISUAL EVIDENCE</div>
+    <div class="headline">YOU'RE BALD</div>
     <div class="subhead">UNNECESSARILY DRAMATIC BALD DETECTION SYSTEM</div>
 
     <div class="bald-label">
@@ -216,11 +208,12 @@
     <div class="image-wrap">
       <div class="bald-shout">BALD!</div>
 
-      <div class="arrow arrow-1">⬆</div>
-      <div class="arrow arrow-2">⬇</div>
-      <div class="arrow arrow-3">⬇</div>
+      <!-- Arrows all converging on the same bald spot -->
+      <div class="arrow arrow-1">⬇</div>
+      <div class="arrow arrow-2">➜</div>
+      <div class="arrow arrow-3">⬅</div>
 
-      <img src="https://yourebald.com/Rays_Bald.webp" alt="A gloriously bald man">
+      <img src="Rays_Bald.webp" alt="A gloriously bald man">
     </div>
 
     <div class="caption">
