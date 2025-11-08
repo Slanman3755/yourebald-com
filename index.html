@@ -31,24 +31,24 @@
 
     .poster {
       position: relative;
-      width: min(92vw, 60vh);          /* scales with viewport, constrained by height */
+      width: min(90vw, 55vh);        /* desktop: keep it tight */
       max-height: 94vh;
       padding: 1.2vw;
       border-radius: 2vw;
       background: radial-gradient(circle at top, #111827, #030712);
-      border: 0.15vw solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 2.5vw 4vw rgba(0, 0, 0, 0.7);
+      border: 0.15vw solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 2.2vw 4vw rgba(0, 0, 0, 0.7);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4vw;
+      gap: 0.5vw;
     }
 
     .headline {
       text-align: center;
       font-weight: 900;
-      font-size: clamp(3vw, 3.6vw, 5vw);
-      letter-spacing: 0.8vw;
+      font-size: clamp(2.4vw, 3vw, 3.4vw);
+      letter-spacing: 0.6vw;
       text-transform: uppercase;
       color: var(--accent);
       text-shadow: 0 0 1vw rgba(0, 0, 0, 1);
@@ -56,8 +56,8 @@
 
     .subhead {
       text-align: center;
-      font-size: clamp(1.2vw, 1.4vw, 1.6vw);
-      letter-spacing: 0.35vw;
+      font-size: clamp(0.9vw, 1.1vw, 1.3vw);
+      letter-spacing: 0.3vw;
       text-transform: uppercase;
       color: #9ca3af;
     }
@@ -68,45 +68,45 @@
       justify-content: center;
       gap: 0.4vw;
       padding: 0.4vw 1.4vw;
-      margin-top: 0.4vw;
+      margin-top: 0.3vw;
       border-radius: 5vw;
       border: 0.12vw solid rgba(255, 221, 0, 0.5);
       background: radial-gradient(circle at top, rgba(255, 221, 0, 0.18), transparent);
-      font-size: clamp(1.1vw, 1.3vw, 1.6vw);
+      font-size: clamp(0.9vw, 1.1vw, 1.4vw);
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 700;
     }
 
     .bald-label .icon {
-      font-size: clamp(1.3vw, 1.6vw, 2vw);
+      font-size: clamp(1.1vw, 1.3vw, 1.6vw);
       transform: translateY(-0.1vw);
     }
 
     .image-wrap {
-      /* target where all arrows point (percentage of this box) */
       --target-x: 50%;
-      --target-y: 18%;
+      --target-y: 18%; /* where arrows meet (as % of this box) */
+
       position: relative;
-      margin-top: 0.6vw;
       width: 100%;
-      flex: 1;
-      border-radius: 1.2vw;
-      padding: 0.4vw;
+      margin-top: 0.6vw;
+      padding: 0.5vw;
+      border-radius: 1vw;
       background:
         radial-gradient(circle at top, rgba(255, 221, 0, 0.16), transparent),
         radial-gradient(circle at bottom, rgba(0, 0, 0, 0.9), #020817);
       border: 0.12vw solid rgba(249, 250, 251, 0.10);
       overflow: hidden;
       display: flex;
-      align-items: stretch;
+      align-items: center;
       justify-content: center;
     }
 
     .image-wrap img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;              /* no vertical cropping on desktop */
+      max-height: 58vh;
+      object-fit: contain;
       border-radius: 0.6vw;
       position: relative;
       z-index: 1;
@@ -120,44 +120,44 @@
       font-weight: 900;
       color: var(--accent);
       text-shadow: 0 0 0.7vw rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 0.18vw #111827;
+      -webkit-text-stroke: 0.16vw #111827;
     }
 
     .bald-shout {
-      top: 1vw;
+      top: 0.9vw;
       left: 1vw;
-      font-size: clamp(2vw, 2.4vw, 3vw);
+      font-size: clamp(1.8vw, 2.2vw, 2.6vw);
       transform: rotate(-9deg);
-      letter-spacing: 0.1vw;
+      letter-spacing: 0.08vw;
     }
 
     .arrow {
-      font-size: clamp(2.2vw, 2.6vw, 3.2vw);
+      font-size: clamp(2vw, 2.4vw, 2.8vw);
       transform-origin: 50% 0%;
     }
 
-    /* All arrows are ⬇ and geometrically aimed at the same target point */
+    /* All arrows are ⬇ and aimed at the same top-center region */
     .arrow-1 {
       left: var(--target-x);
-      top: calc(var(--target-y) - 8%);
+      top: calc(var(--target-y) - 9%);
       transform: translateX(-50%) rotate(0deg);
     }
 
     .arrow-2 {
-      left: calc(var(--target-x) - 18%);
+      left: calc(var(--target-x) - 17%);
       top: calc(var(--target-y) - 4%);
-      transform: rotate(30deg);
+      transform: rotate(28deg);
     }
 
     .arrow-3 {
-      left: calc(var(--target-x) + 18%);
+      left: calc(var(--target-x) + 17%);
       top: calc(var(--target-y) - 4%);
-      transform: rotate(-30deg);
+      transform: rotate(-28deg);
     }
 
     .caption {
       text-align: center;
-      font-size: clamp(1vw, 1.2vw, 1.5vw);
+      font-size: clamp(0.9vw, 1.1vw, 1.3vw);
       color: #9ca3af;
       line-height: 1.4;
       margin-top: 0.2vw;
@@ -170,67 +170,101 @@
 
     .disclaimer {
       text-align: center;
-      font-size: clamp(0.8vw, 1vw, 1.2vw);
+      font-size: clamp(0.8vw, 0.9vw, 1.1vw);
       color: #6b7280;
       font-style: italic;
       margin-bottom: 0.2vw;
     }
 
-    /* Tiny screens: let poster breathe but still no scroll */
+    /* MOBILE: bigger text, minimal chrome, image dominates; still no scroll */
     @media (max-width: 520px) {
       .poster {
         width: 100vw;
+        height: 100vh;
         max-height: 100vh;
         border-radius: 0;
-        padding: 2vw 2vw 1.5vw;
+        padding: 3vw 3vw 2vw;
         box-shadow: none;
-        border-width: 0;
-        gap: 0.6vw;
+        border: none;
+        gap: 1.4vw;
+        justify-content: flex-start;
       }
 
       .headline {
-        font-size: 5vw;
-        letter-spacing: 1vw;
+        font-size: 7vw;
+        letter-spacing: 1.2vw;
       }
 
       .subhead {
-        font-size: 2.2vw;
-        letter-spacing: 0.8vw;
+        font-size: 3vw;
+        letter-spacing: 0.9vw;
       }
 
       .bald-label {
-        font-size: 2.3vw;
-        padding: 0.8vw 2.4vw;
-        margin-top: 0.8vw;
+        font-size: 3vw;
+        padding: 1vw 3.2vw;
+        margin-top: 1.2vw;
+      }
+
+      .bald-label .icon {
+        font-size: 3.4vw;
       }
 
       .image-wrap {
-        margin-top: 1vw;
-        padding: 0.4vw;
-        border-radius: 0.8vw;
+        flex: 1;
+        width: 100%;
+        margin-top: 2vw;
+        padding: 1vw;
+        border-radius: 1.2vw;
+        border-width: 0.4vw;
         --target-y: 20%;
       }
 
       .image-wrap img {
-        border-radius: 0.8vw;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: contain;  /* fill area without cropping */
+        border-radius: 1vw;
       }
 
       .bald-shout {
-        font-size: 3.4vw;
-        top: 1.6vw;
-        left: 1.6vw;
+        font-size: 4vw;
+        top: 2vw;
+        left: 2vw;
       }
 
       .arrow {
-        font-size: 3.4vw;
+        font-size: 4.2vw;
+      }
+
+      /* Re-aim arrows for typical tall mobile aspect so tips meet centrally */
+      .arrow-1 {
+        left: var(--target-x);
+        top: calc(var(--target-y) - 10%);
+        transform: translateX(-50%) rotate(0deg);
+      }
+
+      .arrow-2 {
+        left: calc(var(--target-x) - 20%);
+        top: calc(var(--target-y) - 4%);
+        transform: rotate(30deg);
+      }
+
+      .arrow-3 {
+        left: calc(var(--target-x) + 20%);
+        top: calc(var(--target-y) - 4%);
+        transform: rotate(-30deg);
       }
 
       .caption {
-        font-size: 2vw;
+        font-size: 2.6vw;
+        margin-top: 0.6vw;
       }
 
       .disclaimer {
-        font-size: 1.8vw;
+        font-size: 2.2vw;
+        margin-top: 0.2vw;
       }
     }
   </style>
@@ -240,7 +274,7 @@
     <div class="headline">YOU'RE BALD</div>
     <div class="subhead">UNNECESSARILY DRAMATIC BALD DETECTION SYSTEM</div>
 
-    <div class="bald-label>
+    <div class="bald-label">
       <span class="icon">✨</span>
       <span>Subject Identified: <strong>Bald Man</strong></span>
       <span class="icon">✨</span>
@@ -249,7 +283,7 @@
     <div class="image-wrap">
       <div class="bald-shout">BALD!</div>
 
-      <!-- All arrows identical & converging to same top-center region -->
+      <!-- All arrows identical & converging toward the same top-center region -->
       <div class="arrow arrow-1">⬇</div>
       <div class="arrow arrow-2">⬇</div>
       <div class="arrow arrow-3">⬇</div>
