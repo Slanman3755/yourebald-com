@@ -86,7 +86,7 @@
 
     .image-wrap {
       --target-x: 50%;
-      --target-y: 18%; /* arrow target */
+      --target-y: 18%; /* arrow target (percent of this box) */
 
       position: relative;
       width: 100%;
@@ -123,7 +123,7 @@
       text-shadow: 0 0 0.7vw rgba(0, 0, 0, 1);
     }
 
-    /* Clean BALD! (no outline artifacts) */
+    /* BALD! without stroke (no artifacts) */
     .bald-shout {
       top: 0.9vw;
       left: 1vw;
@@ -132,14 +132,14 @@
       letter-spacing: 0.08vw;
     }
 
-    /* Light outline only on arrows */
+    /* Arrows with subtle outline */
     .arrow {
       font-size: 2.4vw;
       transform-origin: 50% 0%;
       -webkit-text-stroke: 0.06vw #111827;
     }
 
-    /* All arrows ⬇ aimed at same top-center region */
+    /* Arrows all converging to the same top-center region */
     .arrow-1 {
       left: var(--target-x);
       top: calc(var(--target-y) - 9%);
@@ -179,22 +179,25 @@
       margin-bottom: 0.2vw;
     }
 
-    /* ===== MOBILE LAYOUT ===== */
+    /* ================= MOBILE ================= */
     @media (max-width: 520px) {
       body {
+        width: 100vw;
+        height: 100dvh; /* actual visible viewport, ignores browser chrome */
+        overflow: hidden;
         align-items: flex-start;
         justify-content: center;
       }
 
       .poster {
         width: 100vw;
-        height: 100vh;          /* lock to viewport */
-        max-height: 100vh;
+        height: calc(100dvh - env(safe-area-inset-bottom, 0px));
+        max-height: calc(100dvh - env(safe-area-inset-bottom, 0px));
         border-radius: 0;
-        padding: 4vw 4vw 2.5vw;
+        padding: 3.5vw 4vw 2.5vw;
         box-shadow: none;
         border: none;
-        gap: 2.2vw;
+        gap: 1.8vw;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -207,13 +210,13 @@
 
       .subhead {
         font-size: 4vw;
-        letter-spacing: 1.2vw;
+        letter-spacing: 1.1vw;
       }
 
       .bald-label {
         font-size: 4vw;
-        padding: 1.6vw 4.4vw;
-        margin-top: 1.8vw;
+        padding: 1.4vw 4.4vw;
+        margin-top: 1.6vw;
       }
 
       .bald-label .icon {
@@ -221,14 +224,17 @@
       }
 
       .image-wrap {
-        flex: 1;            /* eats remaining space */
-        min-height: 0;      /* CRITICAL: allows shrink instead of pushing out */
+        flex: 1;          /* take remaining space */
+        min-height: 0;    /* allow shrinkage so bottom text isn't pushed out */
         width: 100%;
         margin-top: 3vw;
-        padding: 1.6vw;
-        border-radius: 2.2vw;
-        border-width: 0.4vw;
+        padding: 1.4vw;
+        border-radius: 2vw;
+        border-width: 0.35vw;
         --target-y: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .image-wrap img {
@@ -236,7 +242,7 @@
         height: 100%;
         max-height: 100%;
         object-fit: contain;
-        border-radius: 1.8vw;
+        border-radius: 1.4vw;
       }
 
       .bald-shout {
@@ -251,6 +257,7 @@
         -webkit-text-stroke: 0.16vw #111827;
       }
 
+      /* Adjusted arrow positions for tall mobile shape */
       .arrow-1 {
         left: var(--target-x);
         top: calc(var(--target-y) - 11%);
@@ -271,7 +278,7 @@
 
       .caption {
         font-size: 3.2vw;
-        margin-top: 1vw;
+        margin-top: 0.8vw;
       }
 
       .disclaimer {
@@ -280,10 +287,7 @@
       }
     }
 
-    /* ===== EXTRA SHORT PHONES SAFETY NET =====
-       Scale the whole poster slightly so nothing clips.
-       No scroll, just a tiny zoom-out on very short heights.
-    */
+    /* Super-short devices with nav bars: gently shrink everything as a unit */
     @media (max-width: 520px) and (max-height: 640px) {
       .poster {
         transform: scale(0.94);
