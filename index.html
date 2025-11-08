@@ -138,24 +138,25 @@
 
     .arrow {
       font-size: 28px;
+      transform-origin: 50% 0%; /* rotate around top so tips converge */
     }
 
-    /* All arrows: same icon, converging on top-center of the head */
+    /* All arrows identical ⬇, visually converging on same top-center spot */
     .arrow-1 {
-      top: -2px;
+      top: -4px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) rotate(0deg);
     }
 
     .arrow-2 {
       top: 10%;
-      left: 10%;
+      left: 12%;
       transform: rotate(35deg);
     }
 
     .arrow-3 {
       top: 10%;
-      right: 10%;
+      right: 12%;
       transform: rotate(-35deg);
     }
 
@@ -180,7 +181,7 @@
       font-style: italic;
     }
 
-    /* Mobile: let the image dominate more of the viewport */
+    /* Mobile: make the image dominate */
     @media (max-width: 520px) {
       body {
         padding: 0;
@@ -189,7 +190,7 @@
       .poster {
         max-width: 100%;
         border-radius: 0;
-        padding: 18px 8px 18px;
+        padding: 16px 6px 16px;
         box-shadow: none;
       }
 
@@ -199,12 +200,12 @@
       }
 
       .subhead {
-        font-size: 9px;
-        margin-bottom: 8px;
+        font-size: 8px;
+        margin-bottom: 6px;
       }
 
       .bald-label {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
 
       .image-wrap {
@@ -215,11 +216,11 @@
       }
 
       .image-wrap img {
-        border-radius: 8px;
+        border-radius: 6px;
       }
 
       .bald-shout {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .arrow {
@@ -227,7 +228,7 @@
       }
 
       .caption {
-        font-size: 10px;
+        font-size: 9px;
       }
     }
   </style>
@@ -246,7 +247,7 @@
     <div class="image-wrap">
       <div class="bald-shout">BALD!</div>
 
-      <!-- All arrows identical & converging -->
+      <!-- All arrows are the same character; rotations line their tips to the same spot -->
       <div class="arrow arrow-1">⬇</div>
       <div class="arrow arrow-2">⬇</div>
       <div class="arrow arrow-3">⬇</div>
