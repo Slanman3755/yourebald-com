@@ -123,7 +123,7 @@
       text-shadow: 0 0 0.7vw rgba(0, 0, 0, 1);
     }
 
-    /* Clean BALD! (no outline) */
+    /* Clean BALD! (no outline artifacts) */
     .bald-shout {
       top: 0.9vw;
       left: 1vw;
@@ -179,16 +179,16 @@
       margin-bottom: 0.2vw;
     }
 
-    /* MOBILE: big text + flexed image; nothing cut off, no scroll */
+    /* ===== MOBILE LAYOUT ===== */
     @media (max-width: 520px) {
       body {
-        align-items: stretch;
-        justify-content: stretch;
+        align-items: flex-start;
+        justify-content: center;
       }
 
       .poster {
         width: 100vw;
-        height: 100vh;
+        height: 100vh;          /* lock to viewport */
         max-height: 100vh;
         border-radius: 0;
         padding: 4vw 4vw 2.5vw;
@@ -221,8 +221,8 @@
       }
 
       .image-wrap {
-        flex: 1;            /* image area takes remaining space */
-        min-height: 0;      /* allow shrinking so bottom text stays visible */
+        flex: 1;            /* eats remaining space */
+        min-height: 0;      /* CRITICAL: allows shrink instead of pushing out */
         width: 100%;
         margin-top: 3vw;
         padding: 1.6vw;
@@ -251,7 +251,6 @@
         -webkit-text-stroke: 0.16vw #111827;
       }
 
-      /* Re-aim arrows so tips converge nicely on taller/narrower screens */
       .arrow-1 {
         left: var(--target-x);
         top: calc(var(--target-y) - 11%);
@@ -281,15 +280,22 @@
       }
     }
 
-    /* Extra safeguard for very short devices: gently scale down text to prevent cut-off */
-    @media (max-width: 520px) and (max-height: 600px) {
-      .headline { font-size: 8vw; }
-      .subhead { font-size: 3.4vw; }
-      .bald-label { font-size: 3.4vw; }
-      .bald-shout { font-size: 5vw; }
-      .arrow { font-size: 5vw; }
-      .caption { font-size: 2.6vw; }
-      .disclaimer { font-size: 2.2vw; }
+    /* ===== EXTRA SHORT PHONES SAFETY NET =====
+       Scale the whole poster slightly so nothing clips.
+       No scroll, just a tiny zoom-out on very short heights.
+    */
+    @media (max-width: 520px) and (max-height: 640px) {
+      .poster {
+        transform: scale(0.94);
+        transform-origin: top center;
+      }
+    }
+
+    @media (max-width: 520px) and (max-height: 560px) {
+      .poster {
+        transform: scale(0.88);
+        transform-origin: top center;
+      }
     }
   </style>
 </head>
