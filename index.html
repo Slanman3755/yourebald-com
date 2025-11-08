@@ -1,35 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're Bald</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>You're Bald</title>
+  <style>
+    :root {0
+      --bg: #050816;
+      --accent: #ffdd00;
+      --accent-soft: rgba(255, 221, 0, 0.15);
+      --text: #f9fafb;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", -system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #111827, #020817);
+      color: var(--text);
+      font-family: var(--font);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .poster {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      background: radial-gradient(circle at top, #111827, #030712);
+      border-radius: 32px;
+      padding: 28px 22px 30px;
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(255, 221, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .headline {
+      text-align: center;
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: var(--accent);
+      text-shadow:
+        0 0 14px rgba(255, 221, 0, 0.3),
+        0 0 32px rgba(0, 0, 0, 1);
+    }
+
+    .subhead {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    .bald-label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      margin: 0 auto 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 221, 0, 0.55);
+      background: radial-gradient(circle at top, rgba(255, 221, 0, 0.22), transparent);
+      box-shadow:
+        0 0 16px rgba(255, 221, 0, 0.16),
+        0 0 4px rgba(0, 0, 0, 0.95);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      justify-content: center;
+    }
+
+    .bald-label span.icon {
+      font-size: 14px;
+      transform: translateY(-1px);
+    }
+
+    .image-wrap {
+      position: relative;
+      margin: 4px auto 12px;
+      max-width: 360px;
+      border-radius: 22px;
+      padding: 10px;
+      background:
+        radial-gradient(circle at top, rgba(255, 221, 0, 0.16), transparent),
+        radial-gradient(circle at bottom, rgba(17, 24, 39, 0.9), #020817);
+      border: 1px solid rgba(249, 250, 251, 0.06);
+      box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.7),
+        0 14px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .image-wrap img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      filter: saturate(1.02);
+    }
+
+    /* Loud "BALD!" text */
+    .bald-shout {
+      position: absolute;
+      top: 4px;
+      left: 8px;
+      font-weight: 900;
+      font-size: 24px;
+      transform: rotate(-9deg);
+      color: var(--accent);
+      text-shadow:
+        0 0 12px rgba(0, 0, 0, 1),
+        0 0 18px rgba(255, 221, 0, 0.56);
+      -webkit-text-stroke: 0.5px #111827;
+      letter-spacing: 0.02em;
+      pointer-events: none;
+    }
+
+    /* Another BALD for extra drama */
+    .bald-echo {
+      position: absolute;
+      bottom: -10px;
+      right: 6px;
+      font-weight: 900;
+      font-size: 20px;
+      transform: rotate(7deg);
+      color: rgba(255, 255, 255, 0.96);
+      text-shadow:
+        0 0 8px rgba(0, 0, 0, 1),
+        0 0 14px rgba(255, 221, 0, 0.3);
+      -webkit-text-stroke: 0.5px #111827;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+    }
+
+    /* Arrows aggressively pointing at the bald area */
+    .arrow {
+      position: absolute;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      pointer-events: none;
+    }
+
+    .arrow-1 {
+      top: 26%;
+      left: 6%;
+      transform: rotate(18deg);
+    }
+
+    .arrow-2 {
+      top: 20%;
+      right: 10%;
+      transform: rotate(-22deg);
+    }
+
+    .arrow-3 {
+      top: 33%;
+      left: 40%;
+      transform: rotate(90deg) translateY(-4px);
+      font-size: 34px;
+    }
+
+    .caption {
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .caption span.highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Tiny disclaimer for friendliness */
+    .disclaimer {
+      text-align: center;
+      font-size: 9px;
+      color: #6b7280;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    @media (max-width: 520px) {
+      .headline {
+        font-size: 22px;
+        letter-spacing: 0.16em;
+      }
+      .bald-shout {
+        font-size: 20px;
+      }
+      .bald-echo {
+        font-size: 17px;
+      }
+      .arrow {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="Rays_Bald.webp" alt="You're Bald">
+  <div class="poster">
+    <div class="headline">VISUAL EVIDENCE</div>
+    <div class="subhead">UNNECESSARILY DRAMATIC BALD DETECTION SYSTEM</div>
+
+    <div class="bald-label">
+      <span class="icon">✨</span>
+      <span>Subject Identified: <strong>Bald Man</strong></span>
+      <span class="icon">✨</span>
     </div>
+
+    <div class="image-wrap">
+      <div class="bald-shout">BALD!</div>
+      <div class="bald-echo">ABSOLUTELY BALD!</div>
+
+      <!-- Arrows screaming at the baldness -->
+      <div class="arrow arrow-1">⬆ BALD!</div>
+      <div class="arrow arrow-2">BALD! ⬇</div>
+      <div class="arrow arrow-3">⬇ BALD!</div>
+
+      <img src="Rays_Bald.webp" alt="A gloriously bald man">
+    </div>
+
+    <div class="caption">
+      Multiple redundant diagnostics confirm:
+      <span class="highlight">100% Grade-A Certified Bald.</span>
+      No hairline detected. Minimal suspense.
+    </div>
+
+    <div class="disclaimer">
+      (Affectionately bald. All shine celebrated.)
+    </div>
+  </div>
 </body>
 </html>
