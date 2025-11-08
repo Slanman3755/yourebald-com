@@ -31,7 +31,7 @@
 
     .poster {
       position: relative;
-      width: min(90vw, 55vh);        /* desktop: keep compact */
+      width: min(90vw, 55vh);        /* desktop/tablet */
       max-height: 94vh;
       padding: 1.2vw;
       border-radius: 2vw;
@@ -85,7 +85,7 @@
 
     .image-wrap {
       --target-x: 50%;
-      --target-y: 18%; /* where arrows meet (as % of this box) */
+      --target-y: 18%; /* top-center target for arrows */
 
       position: relative;
       width: 100%;
@@ -104,7 +104,7 @@
 
     .image-wrap img {
       width: 100%;
-      height: auto;              /* no vertical cropping on desktop */
+      height: auto;              /* avoid cropping on desktop */
       max-height: 58vh;
       object-fit: contain;
       border-radius: 0.6vw;
@@ -122,7 +122,7 @@
       text-shadow: 0 0 0.7vw rgba(0, 0, 0, 1);
     }
 
-    /* Remove stroke from "BALD!" to avoid artifacts */
+    /* No stroke on BALD! to avoid artifacts */
     .bald-shout {
       top: 0.9vw;
       left: 1vw;
@@ -131,14 +131,14 @@
       letter-spacing: 0.08vw;
     }
 
-    /* Keep a subtle stroke only on arrows (smaller to reduce artifacts) */
+    /* Light stroke on arrows only */
     .arrow {
       font-size: clamp(2vw, 2.4vw, 2.8vw);
       transform-origin: 50% 0%;
       -webkit-text-stroke: 0.06vw #111827;
     }
 
-    /* All arrows are ⬇ and aimed at the same top-center region */
+    /* All arrows ⬇ aimed at same top-center region */
     .arrow-1 {
       left: var(--target-x);
       top: calc(var(--target-y) - 9%);
@@ -178,7 +178,7 @@
       margin-bottom: 0.2vw;
     }
 
-    /* MOBILE: much bigger text, minimal chrome, image dominates; no scroll */
+    /* MOBILE: force large, readable text (4–10vw), full-height layout, no scroll */
     @media (max-width: 520px) {
       .poster {
         width: 100vw;
@@ -193,31 +193,31 @@
       }
 
       .headline {
-        font-size: 9vw;
-        letter-spacing: 1.4vw;
+        font-size: 10vw;           /* in requested range */
+        letter-spacing: 1.8vw;
       }
 
       .subhead {
-        font-size: 3.6vw;
-        letter-spacing: 1vw;
+        font-size: 4vw;            /* in requested range */
+        letter-spacing: 1.1vw;
       }
 
       .bald-label {
-        font-size: 3.4vw;
-        padding: 1.4vw 4vw;
-        margin-top: 1.6vw;
+        font-size: 4vw;            /* in requested range */
+        padding: 1.6vw 4.4vw;
+        margin-top: 2vw;
       }
 
       .bald-label .icon {
-        font-size: 3.8vw;
+        font-size: 4.4vw;
       }
 
       .image-wrap {
         flex: 1;
         width: 100%;
         margin-top: 3vw;
-        padding: 1.4vw;
-        border-radius: 2vw;
+        padding: 1.6vw;
+        border-radius: 2.2vw;
         border-width: 0.4vw;
         --target-y: 20%;
       }
@@ -226,23 +226,23 @@
         width: 100%;
         height: 100%;
         max-height: 100%;
-        object-fit: contain;  /* fill area without cropping */
-        border-radius: 1.4vw;
+        object-fit: contain;
+        border-radius: 1.8vw;
       }
 
       .bald-shout {
-        font-size: 5vw;
-        top: 2.4vw;
-        left: 2.4vw;
-        text-shadow: 0 0 1vw rgba(0, 0, 0, 1);
+        font-size: 6vw;            /* nice and bold */
+        top: 3vw;
+        left: 3vw;
+        text-shadow: 0 0 1.4vw rgba(0, 0, 0, 1);
       }
 
       .arrow {
-        font-size: 5vw;
-        -webkit-text-stroke: 0.12vw #111827;
+        font-size: 6vw;            /* matches visual weight */
+        -webkit-text-stroke: 0.16vw #111827;
       }
 
-      /* Re-aim arrows so tips visually meet near same point on tall screens */
+      /* Re-aim arrows so tips meet near same top-center point */
       .arrow-1 {
         left: var(--target-x);
         top: calc(var(--target-y) - 11%);
@@ -262,12 +262,12 @@
       }
 
       .caption {
-        font-size: 3vw;
+        font-size: 3.2vw;          /* >4vw would be huge vs others; 3.2vw is readable */
         margin-top: 1vw;
       }
 
       .disclaimer {
-        font-size: 2.6vw;
+        font-size: 2.8vw;
         margin-top: 0.4vw;
       }
     }
