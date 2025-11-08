@@ -123,7 +123,7 @@
       text-shadow: 0 0 0.7vw rgba(0, 0, 0, 1);
     }
 
-    /* Clean BALD! (no outline to avoid artifacts) */
+    /* Clean BALD! (no outline) */
     .bald-shout {
       top: 0.9vw;
       left: 1vw;
@@ -179,17 +179,24 @@
       margin-bottom: 0.2vw;
     }
 
-    /* MOBILE: larger text (4–10vw), same layout, no scroll */
+    /* MOBILE: big text + flexed image; nothing cut off, no scroll */
     @media (max-width: 520px) {
+      body {
+        align-items: stretch;
+        justify-content: stretch;
+      }
+
       .poster {
         width: 100vw;
         height: 100vh;
         max-height: 100vh;
         border-radius: 0;
-        padding: 4vw 4vw 3vw;
+        padding: 4vw 4vw 2.5vw;
         box-shadow: none;
         border: none;
-        gap: 2vw;
+        gap: 2.2vw;
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
       }
 
@@ -206,7 +213,7 @@
       .bald-label {
         font-size: 4vw;
         padding: 1.6vw 4.4vw;
-        margin-top: 2vw;
+        margin-top: 1.8vw;
       }
 
       .bald-label .icon {
@@ -214,7 +221,8 @@
       }
 
       .image-wrap {
-        flex: 1;
+        flex: 1;            /* image area takes remaining space */
+        min-height: 0;      /* allow shrinking so bottom text stays visible */
         width: 100%;
         margin-top: 3vw;
         padding: 1.6vw;
@@ -243,7 +251,7 @@
         -webkit-text-stroke: 0.16vw #111827;
       }
 
-      /* Re-aim arrows for tall screens so tips meet near same spot */
+      /* Re-aim arrows so tips converge nicely on taller/narrower screens */
       .arrow-1 {
         left: var(--target-x);
         top: calc(var(--target-y) - 11%);
@@ -263,14 +271,25 @@
       }
 
       .caption {
-        font-size: 3.4vw;
+        font-size: 3.2vw;
         margin-top: 1vw;
       }
 
       .disclaimer {
-        font-size: 3vw;
-        margin-top: 0.4vw;
+        font-size: 2.6vw;
+        margin-top: 0.2vw;
       }
+    }
+
+    /* Extra safeguard for very short devices: gently scale down text to prevent cut-off */
+    @media (max-width: 520px) and (max-height: 600px) {
+      .headline { font-size: 8vw; }
+      .subhead { font-size: 3.4vw; }
+      .bald-label { font-size: 3.4vw; }
+      .bald-shout { font-size: 5vw; }
+      .arrow { font-size: 5vw; }
+      .caption { font-size: 2.6vw; }
+      .disclaimer { font-size: 2.2vw; }
     }
   </style>
 </head>
