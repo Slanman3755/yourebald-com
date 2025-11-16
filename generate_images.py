@@ -8,7 +8,7 @@ import math
 BASE_IMAGE_PATH = 'Rays_Bald.png' 
 OUTPUT_DIR = 'generated_images' 
 NUM_OUTPUT_IMAGES = 100
-HAIRS_PER_STEP = 50   # Used from your last input: Increased for denser hair
+HAIRS_PER_STEP = 35   # Used from your last input: Increased for denser hair
 MAX_TOTAL_HAIRS = NUM_OUTPUT_IMAGES * HAIRS_PER_STEP 
 
 # --- Hair Styling Parameters ---
